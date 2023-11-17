@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: eb2f9f2a39db09245baf52a86d363a0b
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170590
+  packageName: Unnerving Ambient Sounds - Horror Game Sound Effect Pack (35 Sounds)
+  packageVersion: 1.0
+  assetPath: Assets/Unnerving Ambient Sounds - Horror Game Sound Effect Pack/Paranormal
+    Phenomena/Paranormal Phenomena 1.wav
+  uploadId: 373331
