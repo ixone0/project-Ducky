@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9f1bb30f228ebbd4b8a516a93e4d8bd7
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51544
+  packageName: 'FlatPoly: Winter Village'
+  packageVersion: 1.2
+  assetPath: Assets/Zololgo/PaperLands Winter Village/Shaders/Zololgo_PaperLands_StandardColor.shader
+  uploadId: 227107
