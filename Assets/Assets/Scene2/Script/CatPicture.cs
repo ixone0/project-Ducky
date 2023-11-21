@@ -52,7 +52,7 @@ public class CatPicture : MonoBehaviour
     public bool InRoomDuck = false;
     public bool InRoomCat = false;
     public bool InRoomClown = false;
-    public bool InRoomPig = false;
+    public bool InRoomPig = fal se;
     private bool attachedToWall = false; // Flag to track attachment status
     private bool attachedInRoomDuck = false;
     private bool attachedInRoomCat = false;
