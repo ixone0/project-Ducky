@@ -41,6 +41,9 @@ public class Systemnaja : MonoBehaviour
 
     [Header("GameOver")]
     public static bool GameOver;
+
+    [SerializeField] private Texture2D cursorTexture;
+    private Vector2 cursorSpot;
     
     public void Start() 
     {
@@ -71,6 +74,9 @@ public class Systemnaja : MonoBehaviour
         Scene2Complete = false;
 
         //Time.timeScale = 0f;
+
+        cursorSpot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
+        Cursor.SetCursor(cursorTexture, cursorSpot, CursorMode.Auto);
     }
 
     public void Update()
