@@ -50065,6 +50065,31 @@ PrefabInstance:
       objectReference: {fileID: 1261835724}
     - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
         type: 3}
+      propertyPath: L1Button1
+      value: 
+      objectReference: {fileID: 319974203}
+    - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
+        type: 3}
+      propertyPath: L1Button2
+      value: 
+      objectReference: {fileID: 796853158}
+    - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
+        type: 3}
+      propertyPath: L1Button3
+      value: 
+      objectReference: {fileID: 631745145}
+    - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
+        type: 3}
+      propertyPath: L1Button4
+      value: 
+      objectReference: {fileID: 2135187236}
+    - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
+        type: 3}
+      propertyPath: L1Button5
+      value: 
+      objectReference: {fileID: 1316137730}
+    - target: {fileID: 6655890067998551332, guid: bc4dad1f4c88f77409b611e33fb3832e,
+        type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1116673037}
