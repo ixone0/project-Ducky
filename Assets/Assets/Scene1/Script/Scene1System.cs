@@ -17,6 +17,13 @@ public class Scene1System : MonoBehaviour
     public bool Button4;
     public bool Button5;
 
+    [Header("Light")]
+    public GameObject L1Button1;
+    public GameObject L1Button2;
+    public GameObject L1Button3;
+    public GameObject L1Button4;
+    public GameObject L1Button5;
+
     [Header("UI")]
     public GameObject UIGAMEOVER;
     public static bool GameOver;
@@ -37,6 +44,7 @@ public class Scene1System : MonoBehaviour
     public GameObject timelineVictoryScene1;
     public static bool GameVictory;
 
+    [Header("Cursor")]
     [SerializeField] private Texture2D cursorTexture;
     private Vector2 cursorSpot;
 
@@ -71,7 +79,6 @@ public class Scene1System : MonoBehaviour
 
     void Timer()
     {
-
         if(TimeStart)
         {
             timerText.enabled = true;
@@ -95,7 +102,26 @@ public class Scene1System : MonoBehaviour
         }
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if(time <= 250 && time > 120)
+        {
+            L1Button1.SetActive(true);
+            L1Button2.SetActive(true);
+            L1Button3.SetActive(true);
+            L1Button4.SetActive(true);
+            L1Button5.SetActive(true);
+        }
+
+        if(time <= 120)
+        {
+            L1Button1.SetActive(false);
+            L1Button2.SetActive(false);
+            L1Button3.SetActive(false);
+            L1Button4.SetActive(false);
+            L1Button5.SetActive(false);
+        }
     }
+
 
     void SystemScene1()
     {

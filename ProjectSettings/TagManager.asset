@@ -39,6 +39,7 @@ TagManager:
   - DoorPig
   - StartTimelineEnter
   - SuperDuck
+  - Light1Button
   layers:
   - Default
   - TransparentFX
