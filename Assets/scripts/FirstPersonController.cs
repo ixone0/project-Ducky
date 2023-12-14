@@ -7,7 +7,7 @@ public class FirstPersonController : MonoBehaviour
 {
     public bool CanMove { get;private set;} = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey) && !isCrouching;
- //   private bool ShouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded && !isCrouching;
+    private bool ShouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded && !isCrouching;
     private bool ShouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
     private bool isWalking => !IsSprinting && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D));
   
@@ -119,8 +119,8 @@ public class FirstPersonController : MonoBehaviour
             HandleMovementInput();
             HandleMouseLook();
 
-         /*   if(canJump)
-                HandleJump();*/
+            if(canJump)
+                HandleJump();
 
             if(canCrouch)
                 HandleCrouch();
@@ -152,11 +152,11 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
-   /* private void HandleJump()
+    private void HandleJump()
     {
         if(ShouldJump)
             moveDirection.y = jumpForce;
-    }*/
+    }
 
     private void HandleCrouch()
     {
