@@ -17,12 +17,19 @@ public class Scene1System : MonoBehaviour
     public bool Button4;
     public bool Button5;
 
-    [Header("Light")]
+    [Header("Light1")]
     public GameObject L1Button1;
     public GameObject L1Button2;
     public GameObject L1Button3;
     public GameObject L1Button4;
     public GameObject L1Button5;
+
+    [Header("Light2")]
+    public GameObject L2Button1;
+    public GameObject L2Button2;
+    public GameObject L2Button3;
+    public GameObject L2Button4;
+    public GameObject L2Button5;
 
     [Header("UI")]
     public GameObject UIGAMEOVER;
@@ -103,7 +110,7 @@ public class Scene1System : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if(time <= 250 && time > 120)
+        if(time <= 250)
         {
             L1Button1.SetActive(true);
             L1Button2.SetActive(true);
@@ -112,6 +119,15 @@ public class Scene1System : MonoBehaviour
             L1Button5.SetActive(true);
         }
 
+        if(time <= 100)
+        {
+            L2Button1.SetActive(true);
+            L2Button2.SetActive(true);
+            L2Button3.SetActive(true);
+            L2Button4.SetActive(true);
+            L2Button5.SetActive(true);
+        }
+        /*
         if(time <= 120)
         {
             L1Button1.SetActive(false);
@@ -120,6 +136,7 @@ public class Scene1System : MonoBehaviour
             L1Button4.SetActive(false);
             L1Button5.SetActive(false);
         }
+        */
     }
 
 
