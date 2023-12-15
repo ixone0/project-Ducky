@@ -35,6 +35,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(1, 10)] private float lookSpeedY = 2.0f;
     [SerializeField, Range(1, 180)] public float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] public float lowerLookLimit = 25.0f;
+    public bool Scene3;
 
     [Header("Jumping Parameter")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -107,6 +108,7 @@ public class FirstPersonController : MonoBehaviour
         defaultYPos = playerCamera.transform.localPosition.y;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Scene3 = false;
     }
 
     void Update()
@@ -171,7 +173,7 @@ public class FirstPersonController : MonoBehaviour
             -0.8f,
             0.7f);
         }
-        if(!isCrouching)
+        if(!isCrouching && !Scene3)
         {
             lowerLookLimit = 23f;
             playerCamera.transform.localPosition = new Vector3(
