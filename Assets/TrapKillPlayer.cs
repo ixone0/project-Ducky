@@ -4,34 +4,19 @@ using UnityEngine;
 
 public class TrapKillPlayer : MonoBehaviour
 {
-    public GameObject JumpScare;
-    public bool GameOver;
-
+    public GameObject System;
+    Scene3System scene3system;
     void Start()
     {
-        GameOver = false;
+        System = GameObject.Find("SystemScene3");
+        scene3system = System.GetComponent<Scene3System>();
     }
 
     void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.tag == "Player")
         {
-            if(!GameOver)
-            {
-                StartCoroutine(GAMEOVER());
-            }
+            scene3system.GameOver = true;
         }
-    }
-
-    IEnumerator GAMEOVER()
-    {
-        JumpScare.SetActive(true);
-        Cursor.visible = false;
-        GameOver = true;
-        yield return new WaitForSeconds(1.8f);
-
-        Debug.Log("GameOver");
-        Time.timeScale = 0f;
-        Debug.Log("Time scale set to 0");
     }
 }

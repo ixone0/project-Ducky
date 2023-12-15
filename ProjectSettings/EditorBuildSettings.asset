@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pickscene.unity
     guid: f608cd280baab694b99352a5180749fc
+  - enabled: 1
+    path: Assets/Assets/Scene3/PlayagainScene3.unity
+    guid: 4523ba6d700bc634eb4eea8e76f4a2fa
+  - enabled: 1
+    path: Assets/Scenes/Stage3.unity
+    guid: f9ebd4e6b66ecdc48a73ef53241b1525
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
