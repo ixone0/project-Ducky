@@ -87,11 +87,11 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    public Camera playerCamera;
+    private Camera playerCamera;
     private CharacterController characterController;
 
     private Vector3 moveDirection;
-    private Vector2 currentInput;
+    private Vector2 MovementInput;
 
     private float rotationX = 0;
 
@@ -100,6 +100,7 @@ public class FirstPersonController : MonoBehaviour
     void Awake()
     {
         stamina = staminaMax;
+        playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
         staminaSlider.GetComponent<Slider>().maxValue = staminaMax;
         staminaSlider.GetComponent<Slider>().value = stamina;
         animator = GetComponent<Animator>();
@@ -118,7 +119,7 @@ public class FirstPersonController : MonoBehaviour
         Debug.DrawRay(playerCamera.transform.position, Vector3.up, Color.red);
         if(CanMove)
         {
-            HandleMovementInput();
+            HandleMovement();
             HandleMouseLook();
 
             if(canJump)
@@ -135,12 +136,11 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void HandleMovementInput()
+    private void HandleMovement()
     {
-        currentInput = new Vector2((isCrouching ? crouchspeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxisRaw("Vertical"), (isCrouching ? crouchspeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxisRaw("Horizontal"));
-
+        MovementInput = new Vector2((isCrouching ? crouchspeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxisRaw("Vertical"), (isCrouching ? crouchspeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxisRaw("Horizontal"));
         float moveDirectionY = moveDirection.y;
-        moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
+        moveDirection = (transform.TransformDirection(Vector3.forward) * MovementInput.x) + (transform.TransformDirection(Vector3.right) * MovementInput.y);
         moveDirection.y = moveDirectionY;
     }
 
@@ -150,8 +150,6 @@ public class FirstPersonController : MonoBehaviour
         rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeedX, 0);
-
-
     }
 
     private void HandleJump()
