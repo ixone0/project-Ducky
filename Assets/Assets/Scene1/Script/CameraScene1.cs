@@ -9,7 +9,7 @@ public class PlayerSight : MonoBehaviour
     public LayerMask obstacleLayer;
     public float maxRayDistance = 100f;
     public Transform CameraPlayer;
-    public GameObject EnemyOb;
+    public GameObject Enemy;
     private EnemyMove enemymove;
 
     private Camera playerCamera;
@@ -17,7 +17,7 @@ public class PlayerSight : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
-        enemymove = EnemyOb.GetComponent<EnemyMove>();
+        enemymove = Enemy.GetComponent<EnemyMove>();
     }
 
     private void Update()

@@ -249,7 +249,7 @@ public class FirstPersonController : MonoBehaviour
         duringCrouchAnimation = false;
     }
 
-    void Animation()
+    private void Animation()
     {
 
         if(isWalking && !isCrouching) //Walk
@@ -292,7 +292,7 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
-    void StaminaSystem()
+    private void StaminaSystem()
     {
 
         if(stamina <= 0)
@@ -316,7 +316,6 @@ public class FirstPersonController : MonoBehaviour
             stamina += Instamina * Time.deltaTime;
         }
             
-
     }
 
     IEnumerator WaitWalk()
@@ -327,12 +326,4 @@ public class FirstPersonController : MonoBehaviour
             canSprint = true;
         }
     }
-
-    IEnumerator WaitSeconds()
-    {
-        yield return new WaitForSeconds(1);
-    }
-    
-
-
 }

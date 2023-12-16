@@ -68,9 +68,12 @@ public class ObjectClicker : MonoBehaviour
 
     void Update()
     {
-        
-        ScoreText.text = "Score: " + score + " / 5";
+        SystemClicker();    
+    }
 
+    public void SystemClicker()
+    {
+        ScoreText.text = "Score: " + score + " / 5";
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -139,7 +142,6 @@ public class ObjectClicker : MonoBehaviour
                 }
             }
         }
-        
     }
 
 }
