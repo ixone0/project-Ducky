@@ -37694,7 +37694,7 @@ MonoBehaviour:
     m_Bits: 8388608
   maxRayDistance: 100
   CameraPlayer: {fileID: 1043632365}
-  EnemyOb: {fileID: 631593911}
+  Enemy: {fileID: 631593911}
 --- !u!1001 &1618463890
 PrefabInstance:
   m_ObjectHideFlags: 0
