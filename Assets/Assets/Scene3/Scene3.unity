@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 102808586}
   - component: {fileID: 102808585}
   - component: {fileID: 102808584}
+  - component: {fileID: 102808589}
   m_Layer: 22
   m_Name: Cube (1)
   m_TagString: Button
@@ -724,6 +725,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &102808589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102808583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20527bace95907c4fbec8a692f6f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPanel: {fileID: 2069340247}
+  buttons:
+  - {fileID: 1221025167}
+  - {fileID: 1340602657}
+  - {fileID: 834587621}
+  - {fileID: 1115570822}
+  - {fileID: 1707574455}
+  - {fileID: 1176573236}
+  - {fileID: 441625158}
+  - {fileID: 270990889}
+  - {fileID: 809332007}
 --- !u!114 &187892868 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2417235368847298281, guid: 4f7e0bd4186d4b44cb11debb02e7b961,
@@ -1458,6 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20527bace95907c4fbec8a692f6f8eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPanel: {fileID: 2069340247}
   buttons:
   - {fileID: 1221025167}
   - {fileID: 1340602657}
@@ -2340,6 +2365,7 @@ GameObject:
   - component: {fileID: 793202131}
   - component: {fileID: 793202130}
   - component: {fileID: 793202129}
+  - component: {fileID: 793202134}
   m_Layer: 22
   m_Name: Cube (2)
   m_TagString: Button
@@ -2460,6 +2486,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &793202134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793202128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20527bace95907c4fbec8a692f6f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPanel: {fileID: 2069340247}
+  buttons:
+  - {fileID: 1221025167}
+  - {fileID: 1340602657}
+  - {fileID: 834587621}
+  - {fileID: 1115570822}
+  - {fileID: 1707574455}
+  - {fileID: 1176573236}
+  - {fileID: 441625158}
+  - {fileID: 270990889}
+  - {fileID: 809332007}
 --- !u!1 &809332005
 GameObject:
   m_ObjectHideFlags: 0

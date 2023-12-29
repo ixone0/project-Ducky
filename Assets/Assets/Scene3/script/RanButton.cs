@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class RanButton : MonoBehaviour
 {
     private SystemScene3 systemscene3;
-    private GameObject uiPanel;          // Reference to the UI panel to show/hide.
+    public GameObject uiPanel;          // Reference to the UI panel to show/hide.
     public List<Button> buttons;        // List of UI buttons (numbered 1-9).
     private int currentButtonIndex = 0; // The current index to track the player's progress in the sequence.
     private bool lightsActive = false;  // Indicates whether the buttons are currently lighting up.
+    private bool EqualSequences = false;
 
     // Store the original colors of the buttons
     private List<Color> originalButtonColors;
@@ -21,7 +22,6 @@ public class RanButton : MonoBehaviour
     void Start()
     {
         systemscene3 = GameObject.Find("Scene3Sytem").GetComponent<SystemScene3>(); 
-        uiPanel = GameObject.Find("UIpanel");
         uiPanel.SetActive(false); // Initially, the UI panel is hidden.
         originalButtonColors = new List<Color>(); // Initialize the list to store the original button colors.
         correctSequence = new List<int>(); // Initialize the list to store the correct sequence.
@@ -113,12 +113,12 @@ public class RanButton : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (!AreSequencesEqual())
+        if (!AreSequencesEqual() && EqualSequences)
         {
             StartCoroutine(WrongButtonEffect());
             Debug.Log("Wrong sequence!");
         }
-        else
+        else if(EqualSequences)
         {
             CorrectInput();
             Debug.Log("Correct sequence!");
@@ -127,14 +127,43 @@ public class RanButton : MonoBehaviour
 
     bool AreSequencesEqual()
     {
+        if(playerClicks.Count < correctSequence.Count)
+        {
+            EqualSequences = false;
+            return false;
+        }
+        if(playerClicks.Count >= correctSequence.Count)
+        {
+            EqualSequences = true;
+        }
+        if(EqualSequences)
+        {  
+            for (int i = 0; i < playerClicks.Count; i++)
+            {
+                Debug.Log(correctSequence[i] + "-" + playerClicks[i]);
+                if (correctSequence[i] != playerClicks[i])
+                {
+                    return false;
+                }
+            }
+        }
+
+        Debug.Log("true");
+        return true;
+        
+        /*
         for (int i = 0; i < correctSequence.Count; i++)
         {
+            Debug.Log("InFunction");
+            Debug.Log(correctSequence[i] + "-" + playerClicks[i]);
             if (correctSequence[i] != playerClicks[i])
             {
                 return false;
             }
         }
+        Debug.Log("true");
         return true;
+        */
     }
 
     void OnButtonClicked(int buttonIndex)
@@ -143,8 +172,6 @@ public class RanButton : MonoBehaviour
         {
             Debug.Log(buttonIndex);
             playerClicks.Add(buttonIndex);
-            Debug.Log(playerClicks);
-
             Debug.Log("Player Sequence: " + string.Join(", ", playerClicks));
 
             buttons[buttonIndex].image.color = Color.green;
