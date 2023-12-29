@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class RanButton : MonoBehaviour
 {
-    public GameObject uiPanel;          // Reference to the UI panel to show/hide.
+    private SystemScene3 systemscene3;
+    private GameObject uiPanel;          // Reference to the UI panel to show/hide.
     public List<Button> buttons;        // List of UI buttons (numbered 1-9).
     private int currentButtonIndex = 0; // The current index to track the player's progress in the sequence.
     private bool lightsActive = false;  // Indicates whether the buttons are currently lighting up.
@@ -19,6 +20,8 @@ public class RanButton : MonoBehaviour
 
     void Start()
     {
+        systemscene3 = GameObject.Find("Scene3Sytem").GetComponent<SystemScene3>(); 
+        uiPanel = GameObject.Find("UIpanel");
         uiPanel.SetActive(false); // Initially, the UI panel is hidden.
         originalButtonColors = new List<Color>(); // Initialize the list to store the original button colors.
         correctSequence = new List<int>(); // Initialize the list to store the correct sequence.
@@ -29,13 +32,13 @@ public class RanButton : MonoBehaviour
         {
             int buttonIndex = buttons.IndexOf(button);
             originalButtonColors.Add(button.image.color);
-            button.onClick.AddListener(() => OnButtonClicked(buttonIndex));
+            button.onClick.AddListener(() => { lightsActive = true; OnButtonClicked(buttonIndex); });
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Button"))
+        if (other.CompareTag("Player"))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -50,7 +53,7 @@ public class RanButton : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Button"))
+        if (other.CompareTag("Player"))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -73,6 +76,8 @@ public class RanButton : MonoBehaviour
         playerClicks.Clear(); // Clear player clicks
 
         int randomIndex = 0;
+        yield return new WaitForSeconds(1.0f);
+
         for (int i = 0; i < 5; i++)
         {
             if (buttons.Count > 0)
@@ -82,7 +87,7 @@ public class RanButton : MonoBehaviour
 
                 if (randomIndex >= 0 && randomIndex < buttons.Count)
                 {
-                     buttons[randomIndex].image.color = Color.green;
+                    buttons[randomIndex].image.color = Color.green;
                     yield return new WaitForSeconds(1.0f); // Light up each button for 1 second.
                     buttons[randomIndex].image.color = originalButtonColors[randomIndex];
                     yield return new WaitForSeconds(0.5f); // Pause between button lights.
@@ -101,7 +106,7 @@ public class RanButton : MonoBehaviour
         Debug.Log("Correct Sequence: " + string.Join(", ", correctSequence));
 
         // Check if the player's clicks match the correct sequence
-        OnButtonClicked(randomIndex);
+
     }
 
     IEnumerator CheckPlayerInput()
@@ -115,6 +120,7 @@ public class RanButton : MonoBehaviour
         }
         else
         {
+            CorrectInput();
             Debug.Log("Correct sequence!");
         }
     }
@@ -135,18 +141,16 @@ public class RanButton : MonoBehaviour
     {
         if (lightsActive)
         {
+            Debug.Log(buttonIndex);
             playerClicks.Add(buttonIndex);
+            Debug.Log(playerClicks);
 
             Debug.Log("Player Sequence: " + string.Join(", ", playerClicks));
 
             buttons[buttonIndex].image.color = Color.green;
             StartCoroutine(ResetButtonColor(buttonIndex, 0.5f));
             StartCoroutine(CheckPlayerInput());
-
-
         }
-
-        
     }
 
     IEnumerator ResetButtonColor(int buttonIndex, float delay)
@@ -174,5 +178,18 @@ public class RanButton : MonoBehaviour
     {
         correctSequence.Clear();
         playerClicks.Clear();
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].image.color = originalButtonColors[i];
+        }
+    }
+
+    void CorrectInput()
+    {
+        systemscene3.Gameplay[0] = true;
+        uiPanel.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Destroy(gameObject);
     }
 }
