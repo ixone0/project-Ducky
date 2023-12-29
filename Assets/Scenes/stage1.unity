@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 405610884}
-  m_IndirectSpecularColor: {r: 0.3363028, g: 0.35472807, b: 0.3836814, a: 1}
+  m_IndirectSpecularColor: {r: 0.33634272, g: 0.3547126, b: 0.38368142, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -561,6 +561,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DuckB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 364eba26734afdd4a8e52901145d2b7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5064,7 +5069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ducky : I guess I must have prepared a nice welcome for you.'
+  m_text: 'Ducky : I guess, I have to prepare a nice welcome for you~'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5073,7 +5078,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278255609
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -11265,6 +11270,93 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 285534609}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &287159294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 640.59
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      propertyPath: m_Name
+      value: DuckB2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 789560943}
+  m_SourcePrefab: {fileID: 100100000, guid: 4df3e2186700a794bb9b18c6c46c17ec, type: 3}
 --- !u!1001 &290230156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18299,7 +18391,7 @@ Transform:
   m_GameObject: {fileID: 504903170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 554.81, y: 14.34, z: 0.86}
+  m_LocalPosition: {x: 570.66, y: 14.34, z: 1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27962,6 +28054,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 787510088}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &789560942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4df3e2186700a794bb9b18c6c46c17ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 287159294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &789560943
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789560942}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &797336010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36353,7 +36473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ducky : Hi my mate, long time no see'
+  m_text: 'Ducky : Hi my mate, long time no see~'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36362,7 +36482,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278255103
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -40348,7 +40468,7 @@ PlayableDirector:
   - key: {fileID: 7247177932910049323, guid: 85c67a3a6916dbf4b8238ac016697d52, type: 2}
     value: {fileID: 1206599562}
   - key: {fileID: 8975326431164509, guid: 85c67a3a6916dbf4b8238ac016697d52, type: 2}
-    value: {fileID: 4499907}
+    value: {fileID: 789560943}
   - key: {fileID: 1689278497822004680, guid: 85c67a3a6916dbf4b8238ac016697d52, type: 2}
     value: {fileID: 1081570067}
   - key: {fileID: -7310470934436462448, guid: 85c67a3a6916dbf4b8238ac016697d52, type: 2}
@@ -51150,7 +51270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ducky : I never think that you would come back to me.'
+  m_text: 'Ducky : I''ve never thought that you would come back to me.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -68143,6 +68263,7 @@ SceneRoots:
   - {fileID: 654345931}
   - {fileID: 1200728005}
   - {fileID: 1272065861}
+  - {fileID: 287159294}
   - {fileID: 4499905}
   - {fileID: 2050328120}
   - {fileID: 504903172}
