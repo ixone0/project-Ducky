@@ -8,7 +8,7 @@ public class SystemScene3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Gameplay = new bool[5];
+        Gameplay = new bool[6];
     }
 
     // Update is called once per frame

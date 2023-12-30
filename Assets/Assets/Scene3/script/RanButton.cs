@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class RanButton : MonoBehaviour
 {
-    private SystemScene3 systemscene3;
-    public static int x;
+    public static int NumberStage;
+    private Scene3System scene3system;
+    private FirstPersonController firstpersoncontroller;
     public GameObject uiPanel;          // Reference to the UI panel to show/hide.
     public GameObject UIpressE;
     public List<Button> buttons;        // List of UI buttons (numbered 1-9).
@@ -29,10 +30,11 @@ public class RanButton : MonoBehaviour
 
     void Start()
     {
-        x = 0;
+        NumberStage = 0;
         previousColliders = new Collider[0];
         PlayerDetected = false;
-        systemscene3 = GameObject.Find("Scene3Sytem").GetComponent<SystemScene3>(); 
+        firstpersoncontroller = GameObject.Find("Player2").GetComponent<FirstPersonController>();
+        scene3system = GameObject.Find("SystemScene3").GetComponent<Scene3System>(); 
         uiPanel.SetActive(false); // Initially, the UI panel is hidden.
         originalButtonColors = new List<Color>(); // Initialize the list to store the original button colors.
         correctSequence = new List<int>(); // Initialize the list to store the correct sequence.
@@ -50,7 +52,6 @@ public class RanButton : MonoBehaviour
     void Update()
     {
         OverLap();
-        Setting();
         if(Input.GetKeyDown(KeyCode.E) && PlayerDetected) EnterPanel();
     }
 
@@ -58,7 +59,6 @@ public class RanButton : MonoBehaviour
     {
         Vector3 sphereCenter = transform.position;
 
-        
         Collider[] currentColliders = Physics.OverlapSphere(sphereCenter, checkRadius, playerLayer);
         foreach (Collider currentCollider in currentColliders)
         {
@@ -94,7 +94,6 @@ public class RanButton : MonoBehaviour
                     break;
                 }
             }
-
            
             if (!playerStillDetected)
             {
@@ -108,6 +107,7 @@ public class RanButton : MonoBehaviour
 
     void EnterPanel()
     {
+        firstpersoncontroller.StopMovement();
         Debug.Log("Press E");
         UIpressE.SetActive(false);
         Cursor.visible = true;
@@ -118,20 +118,6 @@ public class RanButton : MonoBehaviour
             currentButtonIndex = 0;     // Reset the index for the player's progress.
             StartCoroutine(LightUpButton()); // Start lighting up buttons.
         }
-    }
-
-    void ExitPanel()
-    {
-        UIpressE.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        uiPanel.SetActive(false); // When the player exits the "GAMEPLAY" area, the UI panel is hidden.
-        lightsActive = false;   // Lights are turned off.
-    }
-
-    void Setting()
-    {
-
     }
 
     IEnumerator LightUpButton()
@@ -268,12 +254,13 @@ public class RanButton : MonoBehaviour
 
     void CorrectInput()
     {
-        systemscene3.Gameplay[x] = true;
+        scene3system.Gameplay[scene3system.i] = true;
+        firstpersoncontroller.ContinueMovement();
         lightsActive = false;
         uiPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
-        x += 1;
+        scene3system.i += 1;
         Destroy(gameObject);
     }
 }

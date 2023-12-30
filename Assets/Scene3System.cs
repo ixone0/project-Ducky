@@ -8,6 +8,9 @@ public class Scene3System : MonoBehaviour
     public bool Scene3Complete;
     public bool GameVictory;
 
+    [Header("Gameplay bool")]
+    public bool[] Gameplay;
+
     /*[Header("Cursor")]
     [SerializeField] private Texture2D cursorTexture;
     private Vector2 cursorSpot;*/
@@ -18,8 +21,13 @@ public class Scene3System : MonoBehaviour
     private bool GameOver1;
     public GameObject JumpScare;
 
+    [Header("Gameplay")]
+    public GameObject[] TimelineGameplay;
+    public int i;
+
     void Start()
     {
+        Gameplay = new bool[6];
         Scene3Complete = false;
         GameOver = false;
         GameOver1 = false;
@@ -29,10 +37,15 @@ public class Scene3System : MonoBehaviour
     void Update()
     {
         System();
+        SystemGameplay();
     }
     
     void System()
     {
+        if(Gameplay[0] && Gameplay[1] && Gameplay[2] && Gameplay[3] && Gameplay[4] && Gameplay[5])
+        {
+            GameVictory = true;
+        }
         if(GameVictory)
         {
 
@@ -46,11 +59,31 @@ public class Scene3System : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        if(!GameOver)
+    }
+
+    void SystemGameplay()
+    {
+        if(Gameplay[0])
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Locked;
+            TimelineGameplay[0].SetActive(true);
         }
+        if(Gameplay[1])
+        {
+            TimelineGameplay[1].SetActive(true);
+        }
+        if(Gameplay[2])
+        {
+            TimelineGameplay[2].SetActive(true);
+        }
+        if(Gameplay[3])
+        {
+            TimelineGameplay[3].SetActive(true);
+        }
+        if(Gameplay[4])
+        {
+            TimelineGameplay[4].SetActive(true);
+        }
+
     }
 
     IEnumerator GAMEOVER()

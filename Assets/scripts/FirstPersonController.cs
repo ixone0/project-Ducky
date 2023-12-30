@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public bool CanMove { get;private set;} = true;
+    public bool CanMove { get; set;} = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey) && !isCrouching;
     private bool IsJumping => Input.GetKeyDown(jumpKey) && characterController.isGrounded && !isCrouching;
     private bool IsCrouching => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
@@ -31,8 +31,8 @@ public class FirstPersonController : MonoBehaviour
 
 
     [Header("Look Parameters")]
-    [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
-    [SerializeField, Range(1, 10)] private float lookSpeedY = 2.0f;
+    [SerializeField, Range(0, 10)] public float lookSpeedX = 2f;
+    [SerializeField, Range(0, 10)] public float lookSpeedY = 2f;
     [SerializeField, Range(1, 180)] public float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] public float lowerLookLimit = 25.0f;
     public bool Scene3;
@@ -325,5 +325,19 @@ public class FirstPersonController : MonoBehaviour
         {
             canSprint = true;
         }
+    }
+
+    public void StopMovement()
+    {
+        CanMove = false;
+        lookSpeedX = 0f;
+        lookSpeedY = 0f;
+    }
+
+    public void ContinueMovement()
+    {
+        CanMove = true;
+        lookSpeedX = 2f;
+        lookSpeedY = 2f;
     }
 }
