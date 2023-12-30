@@ -3016,7 +3016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &73911884
 Animator:
   serializedVersion: 7
@@ -52022,6 +52022,12 @@ PlayableDirector:
     value: {fileID: 73911883}
   - key: {fileID: 215510195060086970, guid: 069d6137297b7b24da21c8c0346eccb7, type: 2}
     value: {fileID: 73911884}
+  - key: {fileID: 1708613409871176033, guid: 069d6137297b7b24da21c8c0346eccb7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4660101456449409215, guid: 069d6137297b7b24da21c8c0346eccb7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6480172609468546059, guid: 069d6137297b7b24da21c8c0346eccb7, type: 2}
+    value: {fileID: 2050328119}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1200728005
@@ -84496,7 +84502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2050328119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8573878cfd79e6d4a839b1f09ee89a99, type: 3}
+  m_Script: {fileID: 11500000, guid: 43dd0803fb62ae74e8f0cff889162fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2050471336
