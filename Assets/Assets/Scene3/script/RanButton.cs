@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RanButton : MonoBehaviour
 {
     private SystemScene3 systemscene3;
+    public static int x;
     public GameObject uiPanel;          // Reference to the UI panel to show/hide.
     public GameObject UIpressE;
     public List<Button> buttons;        // List of UI buttons (numbered 1-9).
@@ -28,6 +29,7 @@ public class RanButton : MonoBehaviour
 
     void Start()
     {
+        x = 0;
         previousColliders = new Collider[0];
         PlayerDetected = false;
         systemscene3 = GameObject.Find("Scene3Sytem").GetComponent<SystemScene3>(); 
@@ -266,11 +268,12 @@ public class RanButton : MonoBehaviour
 
     void CorrectInput()
     {
-        systemscene3.Gameplay[0] = true;
+        systemscene3.Gameplay[x] = true;
         lightsActive = false;
         uiPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
+        x += 1;
         Destroy(gameObject);
     }
 }
