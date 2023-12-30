@@ -7,10 +7,17 @@ public class RanButton : MonoBehaviour
 {
     private SystemScene3 systemscene3;
     public GameObject uiPanel;          // Reference to the UI panel to show/hide.
+    public GameObject UIpressE;
     public List<Button> buttons;        // List of UI buttons (numbered 1-9).
     private int currentButtonIndex = 0; // The current index to track the player's progress in the sequence.
-    private bool lightsActive = false;  // Indicates whether the buttons are currently lighting up.
-    private bool EqualSequences = false;
+    public bool lightsActive = false;  // Indicates whether the buttons are currently lighting up.
+    public bool EqualSequences = false;
+    public bool PlayerDetected;
+    public float checkRadius = 3f;
+    public LayerMask playerLayer;
+    public bool playerWasDetected = false;
+    public bool playerStillDetected = false;
+    private Collider[] previousColliders;
 
     // Store the original colors of the buttons
     private List<Color> originalButtonColors;
@@ -21,6 +28,8 @@ public class RanButton : MonoBehaviour
 
     void Start()
     {
+        previousColliders = new Collider[0];
+        PlayerDetected = false;
         systemscene3 = GameObject.Find("Scene3Sytem").GetComponent<SystemScene3>(); 
         uiPanel.SetActive(false); // Initially, the UI panel is hidden.
         originalButtonColors = new List<Color>(); // Initialize the list to store the original button colors.
@@ -36,30 +45,91 @@ public class RanButton : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Player"))
+        OverLap();
+        Setting();
+        if(Input.GetKeyDown(KeyCode.E) && PlayerDetected) EnterPanel();
+    }
+
+    void OverLap()
+    {
+        Vector3 sphereCenter = transform.position;
+
+        
+        Collider[] currentColliders = Physics.OverlapSphere(sphereCenter, checkRadius, playerLayer);
+        foreach (Collider currentCollider in currentColliders)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            uiPanel.SetActive(true); // When the player enters the "GAMEPLAY" area, the UI panel is shown.
-            if (!lightsActive)
+            playerWasDetected = false;
+
+            foreach (Collider previousCollider in previousColliders)
             {
-                currentButtonIndex = 0;     // Reset the index for the player's progress.
-                StartCoroutine(LightUpButton()); // Start lighting up buttons.
+                if (previousCollider == currentCollider)
+                {
+                    playerWasDetected = true;
+                    break;
+                }
             }
+
+            if (!playerWasDetected)
+            {
+                Debug.Log("Player entered the sphere!");
+                PlayerDetected = true;
+                UIpressE.SetActive(true);
+            }
+        }
+
+     
+        foreach (Collider previousCollider in previousColliders)
+        {
+            playerStillDetected = false;
+
+            foreach (Collider currentCollider in currentColliders)
+            {
+                if (previousCollider == currentCollider)
+                {
+                    playerStillDetected = true;
+                    break;
+                }
+            }
+
+           
+            if (!playerStillDetected)
+            {
+                Debug.Log("Player exited the sphere!");
+                PlayerDetected = false;
+                UIpressE.SetActive(false);
+            }
+        }
+        previousColliders = currentColliders;
+    }
+
+    void EnterPanel()
+    {
+        Debug.Log("Press E");
+        UIpressE.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        uiPanel.SetActive(true); // When the player enters the "GAMEPLAY" area, the UI panel is shown.
+        if (!lightsActive)
+        {
+            currentButtonIndex = 0;     // Reset the index for the player's progress.
+            StartCoroutine(LightUpButton()); // Start lighting up buttons.
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void ExitPanel()
     {
-        if (other.CompareTag("Player"))
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            uiPanel.SetActive(false); // When the player exits the "GAMEPLAY" area, the UI panel is hidden.
-            lightsActive = false;   // Lights are turned off.
-        }
+        UIpressE.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        uiPanel.SetActive(false); // When the player exits the "GAMEPLAY" area, the UI panel is hidden.
+        lightsActive = false;   // Lights are turned off.
+    }
+
+    void Setting()
+    {
+
     }
 
     IEnumerator LightUpButton()
@@ -113,12 +183,12 @@ public class RanButton : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (!AreSequencesEqual() && EqualSequences)
+        if (!AreSequencesEqual())
         {
             StartCoroutine(WrongButtonEffect());
             Debug.Log("Wrong sequence!");
         }
-        else if(EqualSequences)
+        else if(AreSequencesEqual() && EqualSequences)
         {
             CorrectInput();
             Debug.Log("Correct sequence!");
@@ -127,43 +197,24 @@ public class RanButton : MonoBehaviour
 
     bool AreSequencesEqual()
     {
-        if(playerClicks.Count < correctSequence.Count)
-        {
-            EqualSequences = false;
-            return false;
-        }
-        if(playerClicks.Count >= correctSequence.Count)
+        if(playerClicks.Count == correctSequence.Count)
         {
             EqualSequences = true;
         }
-        if(EqualSequences)
-        {  
-            for (int i = 0; i < playerClicks.Count; i++)
-            {
-                Debug.Log(correctSequence[i] + "-" + playerClicks[i]);
-                if (correctSequence[i] != playerClicks[i])
-                {
-                    return false;
-                }
-            }
-        }
-
-        Debug.Log("true");
-        return true;
-        
-        /*
-        for (int i = 0; i < correctSequence.Count; i++)
+        if(playerClicks.Count < correctSequence.Count)
         {
-            Debug.Log("InFunction");
+            EqualSequences = false;
+        }
+        
+        for (int i = 0; i < playerClicks.Count; i++)
+        {
             Debug.Log(correctSequence[i] + "-" + playerClicks[i]);
             if (correctSequence[i] != playerClicks[i])
             {
                 return false;
             }
         }
-        Debug.Log("true");
         return true;
-        */
     }
 
     void OnButtonClicked(int buttonIndex)
@@ -173,10 +224,12 @@ public class RanButton : MonoBehaviour
             Debug.Log(buttonIndex);
             playerClicks.Add(buttonIndex);
             Debug.Log("Player Sequence: " + string.Join(", ", playerClicks));
+            Debug.Log(playerClicks.Count +  " - " + correctSequence.Count);
 
             buttons[buttonIndex].image.color = Color.green;
             StartCoroutine(ResetButtonColor(buttonIndex, 0.5f));
             StartCoroutine(CheckPlayerInput());
+            lightsActive = false;
         }
     }
 
@@ -214,6 +267,7 @@ public class RanButton : MonoBehaviour
     void CorrectInput()
     {
         systemscene3.Gameplay[0] = true;
+        lightsActive = false;
         uiPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
