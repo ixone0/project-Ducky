@@ -147,7 +147,7 @@ public class RanButton : MonoBehaviour
                 {
                     buttons[randomIndex].image.color = Color.green;
                     yield return new WaitForSeconds(1.0f); // Light up each button for 1 second.
-                    buttons[randomIndex].image.color = originalButtonColors[randomIndex];
+                    buttons[randomIndex].image.color = Color.white;
                     yield return new WaitForSeconds(0.5f); // Pause between button lights.
                 }
             }   
@@ -211,7 +211,6 @@ public class RanButton : MonoBehaviour
         {
             Debug.Log(buttonIndex);
             playerClicks.Add(buttonIndex);
-            Debug.Log("Player Sequence: " + string.Join(", ", playerClicks));
             Debug.Log(playerClicks.Count +  " - " + correctSequence.Count);
 
             buttons[buttonIndex].image.color = Color.green;
@@ -224,7 +223,7 @@ public class RanButton : MonoBehaviour
     IEnumerator ResetButtonColor(int buttonIndex, float delay)
     {
         yield return new WaitForSeconds(delay);
-        buttons[buttonIndex].image.color = originalButtonColors[buttonIndex];
+        buttons[buttonIndex].image.color = Color.white;
     }
 
     IEnumerator WrongButtonEffect()
@@ -261,6 +260,6 @@ public class RanButton : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
         scene3system.i += 1;
-        Destroy(gameObject);
+        ResetGame();
     }
 }
