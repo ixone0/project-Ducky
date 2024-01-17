@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SDuckClimb : MonoBehaviour
 {
-    public float speed = 10f; // Adjust the speed as needed
+    public float speed; // Adjust the speed as needed
     public GameObject System;
     Scene3System scene3system;
 
