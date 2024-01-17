@@ -28,6 +28,11 @@ public class RanButton : MonoBehaviour
     private List<int> playerClicks;    // Store the player's clicked buttons.
     int buttonIndex;
 
+    private bool correctInputProcessed = false;
+
+    public AudioSource SoundEnter;
+    public AudioSource SoundClick;
+
     void Start()
     {
         NumberStage = 0;
@@ -51,8 +56,11 @@ public class RanButton : MonoBehaviour
 
     void Update()
     {
-        OverLap();
-        if(Input.GetKeyDown(KeyCode.E) && PlayerDetected) EnterPanel();
+        if(!correctInputProcessed)
+        {
+            OverLap();
+        }
+        if(Input.GetKeyDown(KeyCode.E) && PlayerDetected && !correctInputProcessed) EnterPanel();
     }
 
     void OverLap()
@@ -107,6 +115,7 @@ public class RanButton : MonoBehaviour
 
     void EnterPanel()
     {
+        SoundEnter.Play();
         firstpersoncontroller.StopMovement();
         Debug.Log("Press E");
         UIpressE.SetActive(false);
@@ -147,7 +156,7 @@ public class RanButton : MonoBehaviour
                 {
                     buttons[randomIndex].image.color = Color.green;
                     yield return new WaitForSeconds(1.0f); // Light up each button for 1 second.
-                    buttons[randomIndex].image.color = Color.white;
+                    buttons[randomIndex].image.color = Color.black;
                     yield return new WaitForSeconds(0.5f); // Pause between button lights.
                 }
             }   
@@ -169,14 +178,14 @@ public class RanButton : MonoBehaviour
 
     IEnumerator CheckPlayerInput()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         if (!AreSequencesEqual())
         {
             StartCoroutine(WrongButtonEffect());
             Debug.Log("Wrong sequence!");
         }
-        else if(AreSequencesEqual() && EqualSequences)
+        else if(AreSequencesEqual() && EqualSequences && !correctInputProcessed)
         {
             CorrectInput();
             Debug.Log("Correct sequence!");
@@ -209,12 +218,13 @@ public class RanButton : MonoBehaviour
     {
         if (lightsActive)
         {
+            SoundClick.Play();
             Debug.Log(buttonIndex);
             playerClicks.Add(buttonIndex);
-            Debug.Log(playerClicks.Count +  " - " + correctSequence.Count);
+           // Debug.Log(playerClicks.Count +  " - " + correctSequence.Count);
 
             buttons[buttonIndex].image.color = Color.green;
-            StartCoroutine(ResetButtonColor(buttonIndex, 0.5f));
+            StartCoroutine(ResetButtonColor(buttonIndex, 0.35f));
             StartCoroutine(CheckPlayerInput());
             lightsActive = false;
         }
@@ -223,7 +233,7 @@ public class RanButton : MonoBehaviour
     IEnumerator ResetButtonColor(int buttonIndex, float delay)
     {
         yield return new WaitForSeconds(delay);
-        buttons[buttonIndex].image.color = Color.white;
+        buttons[buttonIndex].image.color = Color.black;
     }
 
     IEnumerator WrongButtonEffect()
@@ -256,6 +266,7 @@ public class RanButton : MonoBehaviour
         scene3system.Gameplay[scene3system.i] = true;
         firstpersoncontroller.ContinueMovement();
         lightsActive = false;
+        correctInputProcessed = true;
         uiPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;

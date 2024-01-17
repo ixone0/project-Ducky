@@ -83,6 +83,10 @@ public class Scene3System : MonoBehaviour
         {
             TimelineGameplay[4].SetActive(true);
         }
+        if(Gameplay[5])
+        {
+            TimelineGameplay[5].SetActive(true);
+        }
 
     }
 
